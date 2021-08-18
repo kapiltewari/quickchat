@@ -1,0 +1,13 @@
+/client/cypress
+/client/cypress.json
+/client/node_modules
+/client/build
+/client/package-lock.json
+
+/etc
+
+/server/.nyc_output
+/server/coverage
+/server/node_modules
+/server/test
+/server/package-lock.json

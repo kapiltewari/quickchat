@@ -1,0 +1,80 @@
+// Custom font
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+// default bootstrap
+$primary: #274c77;
+$secondary: #6096ba;
+$light: #e7ecef;
+
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+html,
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: "Lato", sans-serif;
+    height: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+p {
+    margin-bottom: 0px;
+}
+
+a {
+    cursor: pointer;
+}
+
+a:hover,
+a:focus {
+    background-color: #f6f7fa;
+    color: #222;
+}
+
+.tab-content {
+    height: 100%;
+    overflow: hidden;
+}
+
+.custom-scroll button {
+    background-color: $primary;
+}
+
+.list-group-item.active {
+    background-color: #f1f1f1 !important;
+    border: 0px;
+    color: $secondary;
+}
+
+aside.emoji-picker-react {
+    position: absolute !important;
+    z-index: 100;
+    bottom: 85px;
+    left: 8px;
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

@@ -1,0 +1,34 @@
+version: "3.9"
+services:
+    express-api:
+        ports:
+            - 8080:8080
+        depends_on:
+            - postgres-database
+            - dbmate
+    dbmate:
+        image: amacneil/dbmate:latest
+        depends_on:
+            - postgres-database
+        environment:
+            DATABASE_URL: "postgres://postgres:postgres@postgres-database:5432/chatdb?sslmode=disable"
+            DBMATE_MIGRATIONS_DIR: "./migrations"
+            DBMATE_SCHEMA_FILE: "./schema.sql"
+        volumes:
+            - ./server/src/database/migrations:/migrations
+            - ./server/src/database/schema.sql:/schema.sql
+        command: ["--wait", "up"]
+    postgres-database:
+        image: postgres:alpine
+        restart: always
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_DB=chatdb
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        volumes:
+            - qc-data:/var/lib/postgresql/data
+volumes:
+    qc-data:
+        driver: local

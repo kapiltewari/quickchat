@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+    react-app:
+        stdin_open: true
+        tty: true
+        build:
+            context: ./client
+            dockerfile: dockerfile
+            target: dev
+        volumes:
+            - ./client/src:/app/src
+        command: npm start
+        ports:
+            - 3000:3000
+        networks:
+            - qc-app-dev
+    express-api:
+        stdin_open: true
+        tty: true
+        build:
+            context: ./server
+            dockerfile: dockerfile
+            target: dev
+        volumes:
+            - ./server/src:/app/src
+        command: npm run dev
+        networks:
+            - qc-app-dev
+    dbmate:
+        networks:
+            - qc-app-dev
+    postgres-database:
+        networks:
+            - qc-app-dev
+networks:
+    qc-app-dev:
+        driver: bridge

@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+    react-app:
+        build:
+            context: ./client
+            dockerfile: dockerfile
+            target: prod
+        ports:
+            - 3000:80
+        networks:
+            - qc-app-prod
+    express-api:
+        build:
+            context: ./server
+            dockerfile: dockerfile
+            target: prod
+        command: npm start
+        networks:
+            - qc-app-prod
+    dbmate:
+        networks:
+            - qc-app-prod
+    postgres-database:
+        networks:
+            - qc-app-prod
+networks:
+    qc-app-prod:
+        driver: bridge
