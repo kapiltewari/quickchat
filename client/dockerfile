@@ -9,6 +9,7 @@ FROM node:lts-alpine as builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm install --only=production
+RUN npm i node-sass
 COPY . .
 RUN npm run build
 
@@ -16,4 +17,5 @@ FROM nginx as prod
 WORKDIR /usr/share/nginx/html
 RUN rm -rf ./*
 COPY --from=builder /app/build .
+COPY nginx.conf /etc/nginx/nginx.conf
 CMD ["nginx", "-g", "daemon off;"]
