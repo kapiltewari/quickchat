@@ -1,12 +1,11 @@
 version: "3.9"
 services:
-    react-app:
+    frontend:
         stdin_open: true
         tty: true
         build:
             context: ./client
-            dockerfile: dockerfile
-            target: dev
+            dockerfile: dockerfile.dev
         volumes:
             - ./client/src:/app/src
         command: npm start
@@ -14,13 +13,12 @@ services:
             - 3000:3000
         networks:
             - qc-app-dev
-    express-api:
+    backend:
         stdin_open: true
         tty: true
         build:
             context: ./server
-            dockerfile: dockerfile
-            target: dev
+            dockerfile: dockerfile.dev
         volumes:
             - ./server/src:/app/src
         command: npm run dev
@@ -29,7 +27,7 @@ services:
     dbmate:
         networks:
             - qc-app-dev
-    postgres-database:
+    database:
         networks:
             - qc-app-dev
 networks:

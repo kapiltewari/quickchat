@@ -1,27 +1,25 @@
 version: "3.9"
 services:
-    react-app:
+    frontend:
         build:
             context: ./client
-            dockerfile: dockerfile
-            target: prod
+            dockerfile: dockerfile.prod
         ports:
             - 80:80
             - 443:443
         networks:
             - qc-app-prod
-    express-api:
+    backend:
         build:
             context: ./server
-            dockerfile: dockerfile
-            target: prod
+            dockerfile: dockerfile.prod
         command: npm start
         networks:
             - qc-app-prod
     dbmate:
         networks:
             - qc-app-prod
-    postgres-database:
+    database:
         networks:
             - qc-app-prod
 networks:

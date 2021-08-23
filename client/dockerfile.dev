@@ -1,0 +1,8 @@
+FROM node:lts-alpine
+
+WORKDIR /app
+COPY package*.json ./
+RUN npm i node-sass
+RUN npm install
+COPY . .
+EXPOSE 3000
