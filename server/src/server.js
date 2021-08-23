@@ -27,7 +27,7 @@ app.use(
     })
 );
 app.use(express.json());
-app.use(router);
+app.use("/api", router);
 
 // if route not found
 app.use((req, res, next) => {
