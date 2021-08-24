@@ -8,7 +8,7 @@ function Search({ term, searchKeyword }) {
             autoComplete='off'>
             <InputGroup className='rounded border'>
                 <Form.Control
-                    type='email'
+                    type='text'
                     className='py-2 border-0 bg-light'
                     placeholder='Search...'
                     value={term}
