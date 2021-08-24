@@ -63,6 +63,12 @@ function AddParticipantsModal() {
         socket.on("addParticipantToTheRoomError", () => {
             toast.error("Server error.");
         });
+
+        return () => {
+            socket.off("addParticipantToTheRoomSuccess");
+            socket.off("addParticipantToTheRoomAlreadyAddedError");
+            socket.off("addParticipantToTheRoomError");
+        };
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     function handleSubmit(e) {
