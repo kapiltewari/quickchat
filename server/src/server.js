@@ -86,6 +86,16 @@ const onConnection = (socket) => {
         io.emit("onlineUsers", users);
     });
 
+    socket.on("joinRoom", (room_id) => {
+        if (socket.lastRoom) {
+            socket.leave(socket.lastRoom);
+            socket.lastRoom = null;
+        }
+        socket.join(room_id.toString());
+        socket.lastRoom = room_id.toString();
+        console.log(socket.id, "joined", "room no.", room_id);
+    });
+
     // sockets
     messageSocket(io, socket);
     participantSocket(io, socket);

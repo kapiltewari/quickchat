@@ -4,6 +4,8 @@ services:
         build:
             context: ./client
             dockerfile: dockerfile.prod
+            args:
+                - REACT_APP_API_URL=your_api_url
         ports:
             - 80:80
             - 443:443

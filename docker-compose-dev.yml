@@ -6,6 +6,8 @@ services:
         build:
             context: ./client
             dockerfile: dockerfile.dev
+            args:
+                - REACT_APP_API_URL=http://127.0.0.1:8080
         volumes:
             - ./client/src:/app/src
         command: npm start
@@ -13,6 +15,7 @@ services:
             - 3000:3000
         networks:
             - qc-app-dev
+
     backend:
         stdin_open: true
         tty: true

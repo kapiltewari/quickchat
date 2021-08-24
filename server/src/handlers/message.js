@@ -26,7 +26,7 @@ export const messageSocket = (io, socket) => {
         const result = await findUserByMessageID(message.message_id);
         if (!result) throw createError(500);
 
-        io.emit("receiveMessage", result);
+        io.to(data.room_id.toString()).emit("receiveMessage", result);
     }
 
     socket.on("sendMessage", sendMessage);

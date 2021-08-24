@@ -5,6 +5,7 @@ import CreateRoom from "./CreateRoom";
 import { getRoom } from "../../api/rooms";
 import { useRoom } from "../../contexts/RoomContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { socket } from "../../contexts/SocketContext";
 
 function RoomList({ rooms }) {
     const { room, setRoom } = useRoom();
@@ -14,6 +15,7 @@ function RoomList({ rooms }) {
         await getRoom(room_id, token)
             .then(async (res) => {
                 setRoom(res.data.data);
+                socket.emit("joinRoom", room_id);
             })
             .catch((error) => {
                 console.log(error);
