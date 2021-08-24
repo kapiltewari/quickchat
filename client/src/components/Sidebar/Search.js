@@ -2,10 +2,15 @@ import React from "react";
 import { Form, InputGroup } from "react-bootstrap";
 
 function Search({ term, searchKeyword }) {
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
+
     return (
         <Form
             className='d-flex flex-row align-items-center justify-content-between'
-            autoComplete='off'>
+            autoComplete='off'
+            onSubmit={handleSubmit}>
             <InputGroup className='rounded border'>
                 <Form.Control
                     type='text'

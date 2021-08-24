@@ -65,6 +65,10 @@ function AddParticipantsModal() {
         });
     }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+    function handleSubmit(e) {
+        e.preventDefault();
+    }
+
     return (
         <div className='d-flex'>
             <IconButton
@@ -81,10 +85,11 @@ function AddParticipantsModal() {
                 </Modal.Header>
                 <Form
                     className='d-flex flex-row align-items-center justify-content-between px-2 py-2'
-                    autoComplete='off'>
+                    autoComplete='off'
+                    onSubmit={handleSubmit}>
                     <InputGroup className='rounded border'>
                         <Form.Control
-                            type='email'
+                            type='text'
                             className='py-2 border-0 bg-light'
                             placeholder='Search...'
                             value={searchTerm}
